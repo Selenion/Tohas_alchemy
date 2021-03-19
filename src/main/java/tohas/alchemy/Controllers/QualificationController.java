@@ -5,7 +5,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tohas.alchemy.Entities.Qualification;
-import tohas.alchemy.Entities.Vendor;
 import tohas.alchemy.Repository.QualificationRepository;
 
 import javax.validation.Valid;
@@ -31,8 +30,8 @@ public class QualificationController {
     }
 
     @PostMapping(path = "/api/qualification/new", consumes = "application/json")
-    public Object setNewQualification (@Valid @RequestBody Qualification qualification){
-        qualificationRepository.save(qualification);
+    public Object setNewQualification (@Valid @RequestBody String qualification){
+        qualificationRepository.save(new Qualification(qualification));
         return new ResponseEntity(HttpStatus.OK);
     }
 }

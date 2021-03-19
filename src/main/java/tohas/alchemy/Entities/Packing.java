@@ -23,8 +23,7 @@ public class Packing {
     public Packing() {
     }
 
-    public Packing(Long id, @NotNull String packing_name) {
-        this.id = id;
+    public Packing(@NotNull String packing_name) {
         this.packing_name = packing_name;
     }
 }

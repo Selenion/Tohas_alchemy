@@ -22,8 +22,7 @@ public class Qualification {
     public Qualification() {
     }
 
-    public Qualification(Long id, @NotNull String qualification_name) {
-        this.id = id;
+    public Qualification(@NotNull String qualification_name) {
         this.qualification_name = qualification_name;
     }
 }

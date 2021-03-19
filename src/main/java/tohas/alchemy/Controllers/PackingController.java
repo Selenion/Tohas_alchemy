@@ -5,7 +5,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tohas.alchemy.Entities.Packing;
-import tohas.alchemy.Entities.Qualification;
 import tohas.alchemy.Repository.PackingRepository;
 
 import javax.validation.Valid;
@@ -31,8 +30,8 @@ public class PackingController {
     }
 
     @PostMapping(path = "/api/packing/new", consumes = "application/json")
-    public Object setNewPacking(@Valid @RequestBody Packing packing){
-        packingRepository.save(packing);
+    public Object setNewPacking(@Valid @RequestBody String packing){
+        packingRepository.save(new Packing(packing));
         return new ResponseEntity(HttpStatus.OK);
     }
 }

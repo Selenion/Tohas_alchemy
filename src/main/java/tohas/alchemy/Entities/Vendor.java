@@ -22,8 +22,7 @@ public class Vendor {
     public Vendor() {
     }
 
-    public Vendor(Long id, @NotNull String vendor_name) {
-        this.id = id;
+    public Vendor(@NotNull String vendor_name) {
         this.vendor_name = vendor_name;
     }
 }

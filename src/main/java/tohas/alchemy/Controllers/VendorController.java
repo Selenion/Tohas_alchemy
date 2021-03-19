@@ -28,8 +28,8 @@ public class VendorController {
     }
 
     @PostMapping(path = "/api/vendor/new", consumes = "application/json")
-    public Object setNewVendor(@Valid @RequestBody Vendor vendor){
-        vendorRepository.save(vendor);
+    public Object setNewVendor(@Valid @RequestBody String vendor_name){
+        vendorRepository.save(new Vendor(vendor_name));
         return new ResponseEntity(HttpStatus.OK);
     }
 
