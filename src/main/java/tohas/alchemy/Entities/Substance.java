@@ -7,30 +7,33 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@IdClass(SubstanceId.class)
+@Table(
+        uniqueConstraints=
+        @UniqueConstraint(columnNames={"cas", "name"})
+)
 public class Substance {
 
-    @Id
+
     @NotNull
     @Getter
     @Setter
     String cas;
 
-    @Id
+
     @NotNull
     @Getter
     @Setter
     String name;
 
+    @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Getter
     Long id;
 
     public Substance() {
     }
 
-    public Substance(String cas, String name) {
+    public Substance(@NotNull String cas, @NotNull String name) {
         this.cas = cas;
         this.name = name;
     }

@@ -7,9 +7,7 @@ import tohas.alchemy.Entities.Substance;
 import java.util.List;
 
 @Repository
-public interface SubstanceRepository extends CrudRepository<Substance, Substance> {
+public interface SubstanceRepository extends CrudRepository<Substance, Long> {
     Boolean existsByCas(String cas);
-    Boolean existsById(Long id);
     List<Substance> findAllByCas(String cas);
-    List<Substance> findById(Long id);
 }

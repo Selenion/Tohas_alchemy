@@ -29,8 +29,8 @@ public class SubstanceController {
 
 
     @PostMapping(path = "/api/substance/new", consumes = "application/json")
-    public Object setNewPacking(@Valid @RequestBody Substance substance){
-        substanceRepository.save(substance);
+    public Object setNewPacking(@Valid @RequestBody String cas, String name){
+        substanceRepository.save(new Substance(cas, name));
         return new ResponseEntity(HttpStatus.OK);
     }
 
