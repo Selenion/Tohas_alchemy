@@ -1,30 +1,39 @@
 package tohas.alchemy.Entities;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
+@IdClass(SubstanceId.class)
 public class Substance {
 
-    @EmbeddedId
-    SubstanceId substanceId;
+    @Id
+    @NotNull
+    @Getter
+    @Setter
+    String cas;
 
+    @Id
+    @NotNull
+    @Getter
+    @Setter
     String name;
 
+    @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    Long vendor_code;
-
-    int quantity;
-
-    Long price;
+    @Getter
+    Long id;
 
     public Substance() {
     }
 
-    public Substance(SubstanceId substanceId, String name, Long vendor_code, int quantity, Long price) {
-        this.substanceId = substanceId;
+    public Substance(String cas, String name) {
+        this.cas = cas;
         this.name = name;
-        this.vendor_code = vendor_code;
-        this.quantity = quantity;
-        this.price = price;
     }
 }
+
+
