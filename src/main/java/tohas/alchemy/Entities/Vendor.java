@@ -12,7 +12,7 @@ public class Vendor {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Getter
-    Long id;
+    long id;
 
     @NotNull
     @Getter
@@ -20,9 +20,5 @@ public class Vendor {
     String vendor_name;
 
     public Vendor() {
-    }
-
-    public Vendor(@NotNull String vendor_name) {
-        this.vendor_name = vendor_name;
     }
 }

@@ -1,5 +1,6 @@
 package tohas.alchemy.Controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +12,7 @@ import javax.validation.Valid;
 @RestController
 public class VendorController {
 
+    @Autowired
     private VendorRepository vendorRepository;
 
     @GetMapping(path = "/api/vendor/{id}", produces = "application/json")
@@ -28,8 +30,8 @@ public class VendorController {
     }
 
     @PostMapping(path = "/api/vendor/new", consumes = "application/json")
-    public Object setNewVendor(@Valid @RequestBody String vendor_name){
-        vendorRepository.save(new Vendor(vendor_name));
+    public Object setNewVendor(@Valid @RequestBody Vendor vendor){
+        vendorRepository.save(vendor);
         return new ResponseEntity(HttpStatus.OK);
     }
 

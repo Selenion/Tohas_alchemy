@@ -30,8 +30,8 @@ public class PackingController {
     }
 
     @PostMapping(path = "/api/packing/new", consumes = "application/json")
-    public Object setNewPacking(@Valid @RequestBody String packing){
-        packingRepository.save(new Packing(packing));
+    public Object setNewPacking(@Valid @RequestBody Packing packing){
+        packingRepository.save(packing);
         return new ResponseEntity(HttpStatus.OK);
     }
 }

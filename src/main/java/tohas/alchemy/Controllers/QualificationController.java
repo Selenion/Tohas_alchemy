@@ -30,8 +30,8 @@ public class QualificationController {
     }
 
     @PostMapping(path = "/api/qualification/new", consumes = "application/json")
-    public Object setNewQualification (@Valid @RequestBody String qualification){
-        qualificationRepository.save(new Qualification(qualification));
+    public Object setNewQualification (@Valid @RequestBody Qualification qualification){
+        qualificationRepository.save(qualification);
         return new ResponseEntity(HttpStatus.OK);
     }
 }
