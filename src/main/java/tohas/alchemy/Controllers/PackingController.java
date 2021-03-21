@@ -16,7 +16,7 @@ public class PackingController {
     private PackingRepository packingRepository;
 
     @GetMapping(path = "/api/packing/{id}", produces = "application/json")
-    public Object getPackingById (@Valid @PathVariable Long id){
+    public Object getPackingById(@Valid @PathVariable Long id){
         if (packingRepository.existsById(id)){
             return packingRepository.findById(id);
         }else{
@@ -25,7 +25,7 @@ public class PackingController {
     }
 
     @GetMapping(path = "/api/packing/list", produces = "application/json")
-    public Object getPackingList (){
+    public Object getPackingList(){
         return packingRepository.findAll();
     }
 

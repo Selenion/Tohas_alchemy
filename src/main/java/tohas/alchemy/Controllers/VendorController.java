@@ -16,7 +16,7 @@ public class VendorController {
     private VendorRepository vendorRepository;
 
     @GetMapping(path = "/api/vendor/{id}", produces = "application/json")
-    public Object getVendorById (@Valid @PathVariable Long id){
+    public Object getVendorById(@Valid @PathVariable Long id){
         if (vendorRepository.existsById(id)){
             return vendorRepository.findById(id);
         }else{
@@ -25,7 +25,7 @@ public class VendorController {
     }
 
     @GetMapping(path = "/api/vendor/list", produces = "application/json")
-    public Object getVendorList (){
+    public Object getVendorList(){
         return vendorRepository.findAll();
     }
 

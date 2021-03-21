@@ -16,7 +16,7 @@ public class QualificationController {
     private QualificationRepository qualificationRepository;
 
     @GetMapping(path = "/api/qualification/{id}", produces = "application/json")
-    public Object getQualificationById (@Valid @PathVariable Long id){
+    public Object getQualificationById(@Valid @PathVariable Long id){
         if (qualificationRepository.existsById(id)){
             return qualificationRepository.findById(id);
         }else{
@@ -25,12 +25,12 @@ public class QualificationController {
     }
 
     @GetMapping(path = "/api/qualification/list", produces = "application/json")
-    public Object getQualificationList (){
+    public Object getQualificationList(){
         return qualificationRepository.findAll();
     }
 
     @PostMapping(path = "/api/qualification/new", consumes = "application/json")
-    public Object setNewQualification (@Valid @RequestBody Qualification qualification){
+    public Object setNewQualification(@Valid @RequestBody Qualification qualification){
         qualificationRepository.save(qualification);
         return new ResponseEntity(HttpStatus.OK);
     }

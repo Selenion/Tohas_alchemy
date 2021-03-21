@@ -21,17 +21,17 @@ public class Product {
     @Getter
     @Setter
     @OneToOne
-    Vendor vendor_id;
+    Vendor vendor;
 
     @Getter
     @Setter
     @OneToOne
-    Qualification qualification_id;
+    Qualification qualification;
 
     @Getter
     @Setter
     @OneToOne
-    Packing packing_id;
+    Packing packing;
 
     @Getter
     @Setter
@@ -44,11 +44,11 @@ public class Product {
     public Product() {
     }
 
-    public Product(Substance substance, Vendor vendor_id, Qualification qualification_id, Packing packing_id, int quantity, long price) {
+    public Product(Substance substance, Vendor vendor, Qualification qualification, Packing packing, int quantity, long price) {
         this.substance = substance;
-        this.vendor_id = vendor_id;
-        this.qualification_id = qualification_id;
-        this.packing_id = packing_id;
+        this.vendor = vendor;
+        this.qualification = qualification;
+        this.packing = packing;
         this.quantity = quantity;
         this.price = price;
     }

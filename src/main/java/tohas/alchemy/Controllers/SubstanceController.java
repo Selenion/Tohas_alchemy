@@ -17,7 +17,7 @@ public class SubstanceController {
 
 
     @GetMapping(path = "/api/substance/{id}", produces = "application/json")
-    public Object getSubstanceById (@Valid @PathVariable Long id) {
+    public Object getSubstanceById(@Valid @PathVariable Long id) {
 
         if (substanceRepository.existsById(id)){
             return substanceRepository.findById(id);
@@ -25,6 +25,11 @@ public class SubstanceController {
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
 
+    }
+
+    @GetMapping(path = "/api/substance/all", produces = "application/json")
+    public Object getSubstanceList(){
+        return substanceRepository.findAll();
     }
 
 

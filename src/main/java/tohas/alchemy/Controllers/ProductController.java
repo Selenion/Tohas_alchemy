@@ -16,7 +16,7 @@ public class ProductController {
     private ProductRepository productRepository;
 
     @GetMapping(path = "/api/product/{id}", produces = "application/json")
-    public Object getProductById (@Valid @PathVariable Long id){
+    public Object getProductById(@Valid @PathVariable Long id){
         if (productRepository.existsById(id)) {
             return productRepository.findById(id);
         }else{
@@ -25,7 +25,7 @@ public class ProductController {
     }
 
     @PostMapping(path = "/api/product/new", consumes = "application/json")
-    public Object createNewProduct (@RequestBody Product product){
+    public Object createNewProduct(@RequestBody Product product){
         productRepository.save(product);
         return new ResponseEntity(HttpStatus.OK);
     }
