@@ -2,9 +2,9 @@ package tohas.alchemy.Repository;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
-import tohas.alchemy.Entities.Vendor;
+import tohas.alchemy.Entities.Dictionaries.VendorDictionary;
 
 @Repository
-public interface VendorRepository extends CrudRepository<Vendor, Long> {
+public interface VendorDictionaryRepository extends CrudRepository<VendorDictionary, Long> {
 
 }

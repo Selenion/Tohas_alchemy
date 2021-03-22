@@ -2,8 +2,8 @@ package tohas.alchemy.Repository;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
-import tohas.alchemy.Entities.Packing;
+import tohas.alchemy.Entities.Dictionaries.PackingDictionary;
 
 @Repository
-public interface PackingRepository extends CrudRepository<Packing, Long> {
+public interface PackingDictionaryRepository extends CrudRepository<PackingDictionary, Long> {
 }

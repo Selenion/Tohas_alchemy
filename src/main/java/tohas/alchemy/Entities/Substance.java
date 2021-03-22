@@ -2,42 +2,38 @@ package tohas.alchemy.Entities;
 
 import lombok.Getter;
 import lombok.Setter;
+import tohas.alchemy.Entities.Dictionaries.QualificationDictionary;
+import tohas.alchemy.Entities.Dictionaries.SubstanceDictionary;
+import tohas.alchemy.Entities.Dictionaries.VendorDictionary;
+import tohas.alchemy.Entities.Dictionaries.PackingDictionary;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
-@Table(
-        uniqueConstraints=
-        @UniqueConstraint(columnNames={"cas", "name"})
-)
 public class Substance {
 
-
-    @NotNull
-    @Getter
-    @Setter
-    String cas;
-
-
-    @NotNull
-    @Getter
-    @Setter
-    String name;
-
-    @Getter
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_substance")
-    @SequenceGenerator(allocationSize = 100, name="seq_substance", sequenceName="seq_substance")
-    Long id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_productcode")
+    @SequenceGenerator(allocationSize = 100, name="seq_productcode", sequenceName="seq_productcode")
+    @Getter
+    Long code;
+
+    @Getter
+    @Setter
+    @OneToOne
+    SubstanceDictionary substanceDictionary;
+
+    @Getter
+    @Setter
+    @OneToMany
+    List<Vendor> vendorList;
 
     public Substance() {
     }
 
-    public Substance(@NotNull String cas, @NotNull String name) {
-        this.cas = cas;
-        this.name = name;
+    public Substance(SubstanceDictionary substanceDictionary, List<Vendor> vendorList) {
+        this.substanceDictionary = substanceDictionary;
+        this.vendorList = vendorList;
     }
 }
-
-

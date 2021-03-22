@@ -2,9 +2,10 @@ package tohas.alchemy.Entities;
 
 import lombok.Getter;
 import lombok.Setter;
+import tohas.alchemy.Entities.Dictionaries.QualificationDictionary;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
 public class Qualification {
@@ -13,17 +14,23 @@ public class Qualification {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_qualification")
     @SequenceGenerator(allocationSize = 100, name="seq_qualification", sequenceName="seq_qualification")
     @Getter
-    Long id;
+    long id;
 
-    @NotNull
     @Getter
     @Setter
-    String qualification_name;
+    @OneToOne
+    QualificationDictionary qualificationDictionary;
+
+    @Getter
+    @Setter
+    @OneToMany
+    List<Packing> packingList;
 
     public Qualification() {
     }
 
-    public Qualification(@NotNull String qualification_name) {
-        this.qualification_name = qualification_name;
+    public Qualification(QualificationDictionary qualificationDictionary, List<Packing> packingList) {
+        this.qualificationDictionary = qualificationDictionary;
+        this.packingList = packingList;
     }
 }

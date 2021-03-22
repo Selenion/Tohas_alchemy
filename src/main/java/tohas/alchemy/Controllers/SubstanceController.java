@@ -6,37 +6,33 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tohas.alchemy.Entities.Substance;
 import tohas.alchemy.Repository.SubstanceRepository;
+import tohas.alchemy.Views.SubstanceView;
 
+import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
 
 @RestController
+@RequestMapping(path ="/api/substance")
 public class SubstanceController {
 
     @Autowired
     private SubstanceRepository substanceRepository;
 
-
-    @GetMapping(path = "/api/substance/{id}", produces = "application/json")
-    public Object getSubstanceById(@Valid @PathVariable Long id) {
-
-        if (substanceRepository.existsById(id)){
-            return substanceRepository.findById(id);
+    @GetMapping(path = "/{id}", produces = "application/json")
+    public Object getSubstanceById(@Valid @PathVariable Long id){
+        if (substanceRepository.existsById(id)) {
+            SubstanceView substanceView = new SubstanceView();
+            substanceView.fillSubstanceView(substanceRepository.findById(id).orElseThrow(()
+                    -> new EntityNotFoundException(id.toString())));
+            return substanceView;
         }else{
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
-
     }
 
-    @GetMapping(path = "/api/substance/all", produces = "application/json")
-    public Object getSubstanceList(){
-        return substanceRepository.findAll();
-    }
-
-
-    @PostMapping(path = "/api/substance/new", consumes = "application/json")
-    public Object setNewPacking(@Valid @RequestBody Substance substance){
+    @PostMapping(path = "/new", consumes = "application/json")
+    public Object createNewSubstance(@RequestBody Substance substance){
         substanceRepository.save(substance);
         return new ResponseEntity(HttpStatus.OK);
     }
-
 }

@@ -2,29 +2,38 @@ package tohas.alchemy.Entities;
 
 import lombok.Getter;
 import lombok.Setter;
+import tohas.alchemy.Entities.Dictionaries.PackingDictionary;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
 @Entity
 public class Packing {
 
-
-    @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_packing")
     @SequenceGenerator(allocationSize = 100, name="seq_packing", sequenceName="seq_packing")
-    Long id;
+    @Getter
+    long id;
 
-    @NotNull
     @Getter
     @Setter
-    String packing_name;
+    @OneToOne
+    PackingDictionary packingDictionary;
+
+    @Getter
+    @Setter
+    long price;
+
+    @Getter
+    @Setter
+    long quantity;
 
     public Packing() {
     }
 
-    public Packing(@NotNull String packing_name) {
-        this.packing_name = packing_name;
+    public Packing(PackingDictionary packingDictionary, long price, long quantity) {
+        this.packingDictionary = packingDictionary;
+        this.price = price;
+        this.quantity = quantity;
     }
 }

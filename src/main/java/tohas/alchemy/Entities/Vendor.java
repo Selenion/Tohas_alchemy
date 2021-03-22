@@ -2,9 +2,11 @@ package tohas.alchemy.Entities;
 
 import lombok.Getter;
 import lombok.Setter;
+import tohas.alchemy.Entities.Dictionaries.QualificationDictionary;
+import tohas.alchemy.Entities.Dictionaries.VendorDictionary;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
 public class Vendor {
@@ -15,11 +17,21 @@ public class Vendor {
     @Getter
     long id;
 
-    @NotNull
     @Getter
     @Setter
-    String vendor_name;
+    @OneToOne
+    VendorDictionary vendorDictionary;
+
+    @Getter
+    @Setter
+    @OneToMany
+    List<Qualification> qualificationList;
 
     public Vendor() {
+    }
+
+    public Vendor(VendorDictionary vendorDictionary, List<Qualification> qualificationList) {
+        this.vendorDictionary = vendorDictionary;
+        this.qualificationList = qualificationList;
     }
 }
