@@ -27,7 +27,8 @@ public class Substance {
 
     @Getter
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_substance")
+    @SequenceGenerator(allocationSize = 100, name="seq_substance", sequenceName="seq_substance")
     Long id;
 
     public Substance() {

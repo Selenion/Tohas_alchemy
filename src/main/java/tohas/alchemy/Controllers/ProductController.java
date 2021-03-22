@@ -31,4 +31,10 @@ public class ProductController {
     }
 
 
+    @GetMapping(path = "/api/productbysubstance/{id}", produces = "application/json")
+    public Object getProductsBySubstance(@Valid @PathVariable Long id){
+        return productRepository.findProductsBySubstance_Id(id);
+    }
+
+
 }

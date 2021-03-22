@@ -10,7 +10,8 @@ import javax.validation.constraints.NotNull;
 public class Qualification {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_qualification")
+    @SequenceGenerator(allocationSize = 100, name="seq_qualification", sequenceName="seq_qualification")
     @Getter
     Long id;
 

@@ -12,7 +12,8 @@ public class Packing {
 
     @Getter
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_packing")
+    @SequenceGenerator(allocationSize = 100, name="seq_packing", sequenceName="seq_packing")
     Long id;
 
     @NotNull

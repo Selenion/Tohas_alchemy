@@ -10,7 +10,8 @@ import javax.validation.constraints.NotNull;
 public class Vendor {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_vendor")
+    @SequenceGenerator(allocationSize = 100, name="seq_vendor", sequenceName="seq_vendor")
     @Getter
     long id;
 
