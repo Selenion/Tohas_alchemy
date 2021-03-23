@@ -8,6 +8,7 @@ import tohas.alchemy.Entities.Dictionaries.SubstanceDictionary;
 import tohas.alchemy.Repository.SubstanceDictionaryRepository;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping(path ="/api/dictionary/substance")
@@ -18,10 +19,10 @@ public class SubstanceDictionaryController {
 
 
     @GetMapping(path = "/{id}", produces = "application/json")
-    public Object getSubstanceById(@Valid @PathVariable Long id) {
+    public ResponseEntity<SubstanceDictionary> getSubstanceById(@Valid @PathVariable Long id) {
 
         if (substanceDictionaryRepository.existsById(id)){
-            return substanceDictionaryRepository.findById(id);
+            return new ResponseEntity(substanceDictionaryRepository.findById(id), HttpStatus.OK);
         }else{
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
@@ -29,13 +30,13 @@ public class SubstanceDictionaryController {
     }
 
     @GetMapping(path = "/list", produces = "application/json")
-    public Object getSubstanceList(){
-        return substanceDictionaryRepository.findAll();
+    public ResponseEntity<List<SubstanceDictionary>> getSubstanceList(){
+        return new ResponseEntity(substanceDictionaryRepository.findAll(), HttpStatus.OK);
     }
 
 
     @PostMapping(path = "/new", consumes = "application/json")
-    public Object setNewPacking(@Valid @RequestBody SubstanceDictionary substanceDictionary){
+    public ResponseEntity setNewPacking(@Valid @RequestBody SubstanceDictionary substanceDictionary){
         substanceDictionaryRepository.save(substanceDictionary);
         return new ResponseEntity(HttpStatus.OK);
     }

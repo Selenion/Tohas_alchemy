@@ -8,6 +8,7 @@ import tohas.alchemy.Entities.Dictionaries.VendorDictionary;
 import tohas.alchemy.Repository.VendorDictionaryRepository;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping(path ="/api/dictionary/vendor")
@@ -17,21 +18,21 @@ public class VendorDictionaryController {
     private VendorDictionaryRepository vendorDictionaryRepository;
 
     @GetMapping(path = "/{id}", produces = "application/json")
-    public Object getVendorDictionaryById(@Valid @PathVariable Long id){
+    public ResponseEntity<VendorDictionary> getVendorDictionaryById(@Valid @PathVariable Long id){
         if (vendorDictionaryRepository.existsById(id)){
-            return vendorDictionaryRepository.findById(id);
+            return new ResponseEntity(vendorDictionaryRepository.findById(id),HttpStatus.OK);
         }else{
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
     }
 
     @GetMapping(path = "/list", produces = "application/json")
-    public Object getVendorDictionaryList(){
-        return vendorDictionaryRepository.findAll();
+    public ResponseEntity<List<VendorDictionary>> getVendorDictionaryList(){
+        return new ResponseEntity(vendorDictionaryRepository.findAll(), HttpStatus.OK);
     }
 
     @PostMapping(path = "/new", consumes = "application/json")
-    public Object setNewVendorDictionary(@Valid @RequestBody VendorDictionary vendorDictionary){
+    public ResponseEntity setNewVendorDictionary(@Valid @RequestBody VendorDictionary vendorDictionary){
         vendorDictionaryRepository.save(vendorDictionary);
         return new ResponseEntity(HttpStatus.OK);
     }

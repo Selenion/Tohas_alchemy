@@ -23,7 +23,7 @@ public class Qualification {
 
     @Getter
     @Setter
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     List<Packing> packingList;
 
     public Qualification() {

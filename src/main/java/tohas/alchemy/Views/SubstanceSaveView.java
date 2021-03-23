@@ -1,39 +1,38 @@
 package tohas.alchemy.Views;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@NoArgsConstructor
-@AllArgsConstructor
+import java.util.List;
+
 @Getter
 @Setter
 public class SubstanceSaveView {
 
-}
-
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Setter
-class VendorSaveView {
+    Long code;
+    String cas;
+    String name;
 
 }
-
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Setter
-class QualificationSaveView {
-
-}
-
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Setter
-class PackingSaveView{
-
-}
-
+/*{
+        "code": 0,
+        "cas": "string",
+        "name": "string",
+        "vendorViewList": [
+        {
+        "vendorName": "string",
+        "qualificationViewList": [
+        {
+        "qualificationName": "string",
+        "packingViewList": [
+        {
+        "packingName": "string",
+        "price": 0,
+        "quantity": 0
+        }
+        ]
+        }
+        ]
+        }
+        ]
+        }*/

@@ -8,6 +8,7 @@ import tohas.alchemy.Entities.Dictionaries.PackingDictionary;
 import tohas.alchemy.Repository.PackingDictionaryRepository;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping(path ="/api/dictionary/packing")
@@ -17,21 +18,21 @@ public class PackingDictionaryController {
     private PackingDictionaryRepository packingDictionaryRepository;
 
     @GetMapping(path = "/{id}", produces = "application/json")
-    public Object getPackingDictionaryById(@Valid @PathVariable Long id){
+    public ResponseEntity<PackingDictionary> getPackingDictionaryById(@Valid @PathVariable Long id){
         if (packingDictionaryRepository.existsById(id)){
-            return packingDictionaryRepository.findById(id);
+            return new ResponseEntity(packingDictionaryRepository.findById(id),HttpStatus.OK);
         }else{
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
     }
 
     @GetMapping(path = "/list", produces = "application/json")
-    public Object getPackingDictionaryList(){
-        return packingDictionaryRepository.findAll();
+    public ResponseEntity<List<PackingDictionary>> getPackingDictionaryList(){
+        return new ResponseEntity(packingDictionaryRepository.findAll(), HttpStatus.OK);
     }
 
     @PostMapping(path = "/new", consumes = "application/json")
-    public Object setNewPackingDictionary(@Valid @RequestBody PackingDictionary packingDictionary){
+    public ResponseEntity setNewPackingDictionary(@Valid @RequestBody PackingDictionary packingDictionary){
         packingDictionaryRepository.save(packingDictionary);
         return new ResponseEntity(HttpStatus.OK);
     }

@@ -26,7 +26,7 @@ public class Substance {
 
     @Getter
     @Setter
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     List<Vendor> vendorList;
 
     public Substance() {

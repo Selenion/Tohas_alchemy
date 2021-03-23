@@ -2,7 +2,6 @@ package tohas.alchemy.Entities;
 
 import lombok.Getter;
 import lombok.Setter;
-import tohas.alchemy.Entities.Dictionaries.QualificationDictionary;
 import tohas.alchemy.Entities.Dictionaries.VendorDictionary;
 
 import javax.persistence.*;
@@ -24,7 +23,7 @@ public class Vendor {
 
     @Getter
     @Setter
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     List<Qualification> qualificationList;
 
     public Vendor() {
