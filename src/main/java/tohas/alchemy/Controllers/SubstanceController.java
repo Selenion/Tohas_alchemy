@@ -19,12 +19,10 @@ public class SubstanceController {
     private SubstanceRepository substanceRepository;
 
     @GetMapping(path = "/{id}", produces = "application/json")
-    public ResponseEntity<SubstanceView> getSubstanceById(@Valid @PathVariable Long id){
+    public ResponseEntity<Substance> getSubstanceById(@Valid @PathVariable Long id){
         if (substanceRepository.existsById(id)) {
-            SubstanceView substanceView = new SubstanceView();
-            substanceView.fillSubstanceView(substanceRepository.findById(id).orElseThrow(()
-                    -> new EntityNotFoundException(id.toString())));
-            return new ResponseEntity(substanceView, HttpStatus.OK);
+            return new ResponseEntity(substanceRepository.findById(id).orElseThrow(()
+                    -> new EntityNotFoundException(id.toString())), HttpStatus.OK);
         }else{
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
