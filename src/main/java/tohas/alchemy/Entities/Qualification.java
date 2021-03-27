@@ -5,6 +5,7 @@ import lombok.Setter;
 import tohas.alchemy.Entities.Dictionaries.QualificationDictionary;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -32,5 +33,13 @@ public class Qualification {
     public Qualification(QualificationDictionary qualificationDictionary, List<Packing> packingList) {
         this.qualificationDictionary = qualificationDictionary;
         this.packingList = packingList;
+    }
+
+    public void deletePackingFromList(@NotNull Long id){
+        packingList.remove(id);
+    }
+
+    public void addPackingToList(@NotNull Packing packing){
+        packingList.add(packing);
     }
 }

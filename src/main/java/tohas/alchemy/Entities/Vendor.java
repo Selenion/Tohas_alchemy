@@ -5,6 +5,7 @@ import lombok.Setter;
 import tohas.alchemy.Entities.Dictionaries.VendorDictionary;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -32,5 +33,14 @@ public class Vendor {
     public Vendor(VendorDictionary vendorDictionary, List<Qualification> qualificationList) {
         this.vendorDictionary = vendorDictionary;
         this.qualificationList = qualificationList;
+    }
+
+
+    public void deleteQualificationFromList(@NotNull Long id){
+        qualificationList.remove(id);
+    }
+
+    public void addQualificationToList(@NotNull Qualification qualification) {
+        qualificationList.add(qualification);
     }
 }

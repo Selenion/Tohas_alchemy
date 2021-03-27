@@ -6,7 +6,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tohas.alchemy.Entities.Substance;
 import tohas.alchemy.Repository.SubstanceRepository;
-import tohas.alchemy.Views.SubstanceView;
 
 import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;

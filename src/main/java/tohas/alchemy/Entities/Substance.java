@@ -2,12 +2,11 @@ package tohas.alchemy.Entities;
 
 import lombok.Getter;
 import lombok.Setter;
-import tohas.alchemy.Entities.Dictionaries.QualificationDictionary;
 import tohas.alchemy.Entities.Dictionaries.SubstanceDictionary;
-import tohas.alchemy.Entities.Dictionaries.VendorDictionary;
-import tohas.alchemy.Entities.Dictionaries.PackingDictionary;
+
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -35,5 +34,14 @@ public class Substance {
     public Substance(SubstanceDictionary substanceDictionary, List<Vendor> vendorList) {
         this.substanceDictionary = substanceDictionary;
         this.vendorList = vendorList;
+    }
+
+
+    public void deleteVendorFromList(@NotNull Long id){
+        vendorList.remove(id);
+    }
+
+    public void addVendorToList(@NotNull Vendor vendor) {
+        vendorList.add(vendor);
     }
 }
