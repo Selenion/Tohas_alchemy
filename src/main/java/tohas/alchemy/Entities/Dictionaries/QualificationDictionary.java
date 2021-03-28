@@ -20,6 +20,11 @@ public class QualificationDictionary {
     @Setter
     String qualificationName;
 
+    @NotNull
+    @Getter
+    @Setter
+    String qualificationDetails;
+
     public QualificationDictionary() {
     }
 

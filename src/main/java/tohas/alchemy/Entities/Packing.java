@@ -2,7 +2,9 @@ package tohas.alchemy.Entities;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
 import tohas.alchemy.Entities.Dictionaries.PackingDictionary;
+import tohas.alchemy.Repository.PackingRepository;
 
 import javax.persistence.*;
 
